@@ -2,13 +2,7 @@ workflows:
   version: 2
   main:
     jobs:
-      - build
-      - publish:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      - build:
           context: org-global
 
 
@@ -21,37 +15,15 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
+      # temp until a custom docker image with Bash is built
+      - run: apk add --update --no-cache bash
       - run:
-          name: "Build Docker image"
-          command: docker build -t cibuilds/aws:$CIRCLE_SHA1 .
-
-  publish:
-    docker:
-      - image: docker:stable-git
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: "Verify if our previous image is available"
+          name: "Build Docker Images"
+          command: ./build-images.sh
+      - deploy:
+          name: "Publish Docker Images (master branch only)"
           command: |
-            if ! docker image inspect cibuilds/aws:$CIRCLE_SHA1;  then
-              echo "Previously built image not found for some reason. Building."
-              docker build -t cibuilds/aws:$CIRCLE_SHA1 .
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push cibuilds/aws
             fi
-      - run:
-          name: "Publish images to Docker Hub if neccessary"
-          command: |
-            docker images --format "{{.ID}}" cibuilds/aws:$CIRCLE_SHA1 > current_image_id
-            [ -s current_image_id ] || echo "n/a" > current_image_id
-
-            # if IDs match, this image already exists and has been pushed so don't do it again
-            if docker images --format "{{.ID}}" cibuilds/aws:latest | diff - current_image_id;then
-              echo "The image just built (cibuilds/aws:${CIRCLE_SHA1}) is the same as latest (cibuilds/aws:latest). So, we're not going to push to Docker Hub."
-              exit
-            fi
-
-            docker login -u  $DOCKER_USER -p $DOCKER_PASS
-            docker tag cibuilds/aws:$CIRCLE_SHA1 cibuilds/aws:latest
-            docker push cibuilds/aws:$CIRCLE_SHA1
-            docker push cibuilds/aws:latest
