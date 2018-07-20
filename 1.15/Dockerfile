@@ -4,7 +4,7 @@ FROM cibuilds/base:latest
 
 LABEL maintainer="Ricardo N Feliciano (FelicianoTech) <ricardo@feliciano.tech>"
 
-ENV AWS_CLI_VERSION=1.15.61
+ENV AWS_CLI_VERSION=1.15.62
 
 RUN apk --no-cache add python3 && \
 	pip3 install --upgrade \
