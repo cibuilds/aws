@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build --file 1.15/Dockerfile -t cibuilds/aws:latest -t cibuilds/aws:1.15.67  -t cibuilds/aws:1.15 .
+docker build --file 1.15/Dockerfile -t cibuilds/aws:latest -t cibuilds/aws:1.15.68  -t cibuilds/aws:1.15 .
