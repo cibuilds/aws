@@ -10,7 +10,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker:stable-git
+      - image: cibuilds/docker:18.09
     steps:
       - checkout
       - setup_remote_docker:
@@ -24,6 +24,6 @@ jobs:
           name: "Publish Docker Images (master branch only)"
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
               docker push cibuilds/aws
             fi
