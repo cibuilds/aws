@@ -4,9 +4,17 @@ FROM cibuilds/base:latest
 
 LABEL maintainer="Ricardo N Feliciano (FelicianoTech) <ricardo@feliciano.tech>"
 
-ENV AWS_CLI_VERSION=1.17.10
+ENV AWS_CLI_VERSION=1.17.11
 
-RUN apk --no-cache add python3 && \
+RUN apk --no-cache add \
+		gcc \
+		libffi-dev \
+		make \
+		musl-dev \
+		openssl-dev \
+		python3 \
+		python3-dev \
+	&& \
 	pip3 install --upgrade \
 		pip \
 		setuptools && \
