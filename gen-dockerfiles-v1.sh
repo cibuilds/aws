@@ -26,7 +26,7 @@ for i in "${!sortedVersions[@]}"; do
 
 	[[ -d "$versionShort" ]] || mkdir "$versionShort"
 
-	sed -r -e 's!%%AWS_CLI_VERSION%%!'"$version"'!g' "Dockerfile.template" > "$versionShort/Dockerfile"
+	sed -r -e 's!%%AWS_CLI_VERSION%%!'"$version"'!g' "v1.Dockerfile.template" > "$versionShort/Dockerfile"
 
 	string="$string --file $versionShort/Dockerfile"
 	if [[ $i == 0 ]]; then
