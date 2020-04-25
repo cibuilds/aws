@@ -4,7 +4,7 @@ FROM cibuilds/base:latest
 
 LABEL maintainer="Ricardo N Feliciano (FelicianoTech) <ricardo@feliciano.tech>"
 
-ENV AWS_CLI_VERSION=1.18.45
+ENV AWS_CLI_VERSION=1.18.46
 
 RUN apk --no-cache add \
 		gcc \
