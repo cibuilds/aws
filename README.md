@@ -15,6 +15,8 @@ If you need to install additional packages in this image, you'll want to use:
 sudo apt-get update && sudo apt-get install <my-package>
 ```
 
+The `latest` tag will contain the latest version of AWS CLI v2.
+
 
 ## AWS CLI v1
 
@@ -26,3 +28,6 @@ If you need to install additional packages in this image, you'll want to use:
 ```bash
 apk add --no-cache <my-package>
 ```
+
+There isn't a `latest` tag for the v1 CLI.
+You must specify a version.

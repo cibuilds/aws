@@ -29,9 +29,6 @@ for i in "${!sortedVersions[@]}"; do
 	sed -r -e 's!%%AWS_CLI_VERSION%%!'"$version"'!g' "v1.Dockerfile.template" > "$versionShort/Dockerfile"
 
 	string="$string --file $versionShort/Dockerfile"
-	if [[ $i == 0 ]]; then
-		string="${string} -t ${repo}latest"
-	fi
 
 	string="${string} -t ${repo}${version}"
 
