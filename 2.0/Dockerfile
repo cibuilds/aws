@@ -4,7 +4,7 @@ FROM cimg/base:2020.09
 
 LABEL maintainer="Ricardo N Feliciano (FelicianoTech) <ricardo@feliciano.tech>"
 
-ENV AWS_CLI_VERSION=2.0.52
+ENV AWS_CLI_VERSION=2.0.53
 
 RUN curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip" -o "aws-cli.zip" && \
 	unzip aws-cli.zip && \
