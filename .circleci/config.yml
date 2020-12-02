@@ -9,12 +9,11 @@ workflows:
 jobs:
   build:
     docker:
-      - image: cibuilds/docker:18.09
+      - image: cimg/base:2020.12
     steps:
       - checkout
-      - setup_remote_docker
-      # temp until a custom docker image with Bash is built
-      - run: apk add --update --no-cache bash
+      - setup_remote_docker:
+          version: "19.03.13"
       - run:
           name: "Build Docker Images"
           command: ./build-images.sh
