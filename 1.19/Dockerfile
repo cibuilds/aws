@@ -1,10 +1,10 @@
 # vim:set ft=dockerfile:
 
-FROM cibuilds/base:latest
+FROM cibuilds/base:edge
 
 LABEL maintainer="Ricardo N Feliciano (FelicianoTech) <ricardo@feliciano.tech>"
 
-ENV AWS_CLI_VERSION=1.19.22
+ENV AWS_CLI_VERSION=1.19.23
 
 RUN apk --no-cache add \
 		gcc \
@@ -14,11 +14,14 @@ RUN apk --no-cache add \
 		openssl-dev \
 		python3 \
 		python3-dev \
+		py3-pip \
+		cargo \
 	&& \
 	pip3 install --upgrade \
 		pip \
-		setuptools && \
-	pip3 --no-cache-dir install awscli==${AWS_CLI_VERSION} awsebcli && \
+		setuptools \
+	&& \
+	pip3 --no-cache-dir install --ignore-installed awscli==${AWS_CLI_VERSION} awsebcli && \
 	rm -rf /var/cache/apk/*
 
 WORKDIR /root/project
