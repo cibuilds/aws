@@ -1,6 +1,6 @@
 # vim:set ft=dockerfile:
 
-FROM cimg/base:2020.12
+FROM cimg/base:2021.03
 
 LABEL maintainer="Ricardo N Feliciano (FelicianoTech) <ricardo@feliciano.tech>"
 
