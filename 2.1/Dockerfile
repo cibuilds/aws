@@ -1,10 +1,10 @@
 # vim:set ft=dockerfile:
 
-FROM cimg/base:2021.03
+FROM cimg/base:2021.04
 
 LABEL maintainer="Ricardo N Feliciano (FelicianoTech) <ricardo@feliciano.tech>"
 
-ENV AWS_CLI_VERSION=2.1.34
+ENV AWS_CLI_VERSION=2.1.35
 
 RUN curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip" -o "aws-cli.zip" && \
 	unzip aws-cli.zip && \
