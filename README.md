@@ -1,6 +1,15 @@
 # CI Builds: AWS Image [![CircleCI Build Status](https://circleci.com/gh/cibuilds/aws.svg?style=shield)](https://circleci.com/gh/cibuilds/aws) [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/cibuilds/aws/master/LICENSE)
 
-**This image is deprecated in favor of a Docker image provided by CircleCI. Their image provides the AWS CLI, GCP CLI, and more. I suggest switching to the [CircleCI Deploy image](https://github.com/CircleCI-Public/cimg-deploy) ASAP. Starting today, June 1st, 2022, this image will no longer publish AWS CLI v1 releases and will publish v2 releases only for a couple more months.**
+**This image is deprecated in favor of a Docker image provided by CircleCI.
+Their image provides the AWS CLI, Kubernetes, Terraform, Ansible, and more.
+I suggest switching to the [CircleCI AWS image](https://github.com/CircleCI-Public/cimg-aws) ASAP.
+Starting today, June 1st, 2022, this image will no longer publish AWS CLI v1 releases and will publish v2 releases only for a couple more months.**
+
+**The AWS CLI v2.8.x will be the last minor release series this image/repository will provide.
+So v2.8.0, v2.8.1, v2.8.2, and so on.
+Once Amazon moves on to the v2.9.x, this repo will officially be End-of-lifed.
+I suggest moving on to the image by CircleCI recommended above.**
+
 Docker image containing the AWS (Amazon Web Services) CLI designed to run well in Continuous Integration environments such as CircleCI.
 This image also contains the AWS EB (Elastic Beanstalk) CLI.
 
